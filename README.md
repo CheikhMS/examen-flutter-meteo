@@ -1,17 +1,26 @@
-# examen
+# Examen Développement Mobile — L3IAGE ISI 2026
 
-A new Flutter project.
+Application Flutter météo récupérant des données en temps réel pour 5 villes,
+avec jauge de progression animée, tableau interactif, et carte de localisation.
 
-## Getting Started
+## Membres du groupe
 
-This project is a starting point for a Flutter application.
+- Ahmad Mouhamad Al Amine Cheikh SALL
+- Farmata LY
 
-A few resources to get you started if this is your first Flutter project:
+## Fonctionnalités
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- Écran d'accueil
+- Récupération météo via Retrofit (OpenWeather API)
+- Jauge de progression avec message d'attente dynamique
+- Tableau interactif des 5 villes
+- Détail météo par ville + localisation sur carte (OpenStreetMap)
+- Gestion des erreurs avec retry
+- Mode clair / mode sombre
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Lancer le projet
+
+```bash
+flutter pub get
+flutter run
+```

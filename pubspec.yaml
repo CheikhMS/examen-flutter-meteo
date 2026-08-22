@@ -44,8 +44,12 @@ dependencies:
   # Sérialisation JSON
   json_annotation: ^4.9.0
 
-  # Google Maps
-  google_maps_flutter: ^2.18.0
+
+
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+
+  provider: ^6.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
