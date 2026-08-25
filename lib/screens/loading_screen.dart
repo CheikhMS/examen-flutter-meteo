@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../services/theme_provider.dart';
 import '../services/weather_controller.dart';
 import '../widgets/progress_section.dart';
 import '../widgets/loading_message.dart';
@@ -42,15 +43,29 @@ class _LoadingScreenState extends State<LoadingScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Météo"),
-          automaticallyImplyLeading: false, // Cache la flèche de retour automatique
+          automaticallyImplyLeading: false,
           actions: [
             Consumer<WeatherController>(
               builder: (context, controller, _) {
                 if (controller.isLoading) return const SizedBox.shrink();
-                return IconButton(
-                  icon: const Icon(Icons.home),
-                  tooltip: "Retour à l'accueil",
-                  onPressed: () => _goHome(context),
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Consumer<ThemeProvider>(
+                      builder: (context, themeProvider, _) {
+                        return IconButton(
+                          icon: Icon(themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+                          tooltip: "Changer de thème",
+                          onPressed: themeProvider.toggleTheme,
+                        );
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.home),
+                      tooltip: "Retour à l'accueil",
+                      onPressed: () => _goHome(context),
+                    ),
+                  ],
                 );
               },
             ),

@@ -1,9 +1,8 @@
-// widgets/loading_message.dart
-
 import 'package:flutter/material.dart';
 
 /// Affiche le message d'attente dynamique pendant le chargement.
-/// NOTE : version temporaire, à styliser par la partie UI du binôme.
+/// Transition en fondu lors du changement de message pour un rendu
+/// plus doux qu'un simple remplacement de texte.
 class LoadingMessage extends StatelessWidget {
   final String message;
 
@@ -11,6 +10,14 @@ class LoadingMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(message);
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 400),
+      child: Text(
+        message,
+        key: ValueKey(message),
+        style: Theme.of(context).textTheme.bodyMedium,
+        textAlign: TextAlign.center,
+      ),
+    );
   }
 }

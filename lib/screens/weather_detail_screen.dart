@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:provider/provider.dart';
 import '../models/weather_model.dart';
 import '../utils/app_routes.dart';
+import '../services/theme_provider.dart';
 
 /// Écran de détail affichant les informations météo d'une ville
 /// ainsi que sa localisation sur une carte (OpenStreetMap via flutter_map).
@@ -21,15 +23,20 @@ class WeatherDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(weather.city),
         actions: [
+          Consumer<ThemeProvider>(
+            builder: (context, themeProvider, _) {
+              return IconButton(
+                icon: Icon(themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+                tooltip: "Changer de thème",
+                onPressed: themeProvider.toggleTheme,
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.home),
             tooltip: "Retour à l'accueil",
             onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                AppRoutes.home,
-                    (route) => false,
-              );
+              Navigator.pushNamedAndRemoveUntil(context, AppRoutes.home, (route) => false);
             },
           ),
         ],
